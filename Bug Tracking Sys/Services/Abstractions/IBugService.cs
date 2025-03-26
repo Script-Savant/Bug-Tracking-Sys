@@ -1,4 +1,4 @@
-﻿using BugTrackingSys.Models;
+﻿using Bug_Tracking_Sys.Models;
 
 namespace Bug_Tracking_Sys.Services.Abstractions
 {

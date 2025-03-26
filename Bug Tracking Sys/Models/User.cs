@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace BugTrackingSys.Models
+namespace Bug_Tracking_Sys.Models
 {
     public enum UserRole
     {

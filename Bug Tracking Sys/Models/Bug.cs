@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace BugTrackingSys.Models
+namespace Bug_Tracking_Sys.Models
 {
     public enum BugStatus
     {
@@ -29,11 +29,14 @@ namespace BugTrackingSys.Models
         public User AssignedTo { get; set; }
 
         [Required(ErrorMessage = "Created At is required")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public DateTime? ResolvedAt { get; set; }
 
         [Required(ErrorMessage = "Status is required")]
         public BugStatus Status { get; set; }
+
+        public ICollection<BugHistory> History { get; set; } = new List<BugHistory>();
     }
 }
