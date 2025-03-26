@@ -38,9 +38,12 @@ namespace Bug_Tracking_Sys.Services.Implementations
         {
             if (bug == null) throw new ArgumentNullException(nameof(bug));
 
+            // record creation history logic will be here
+
             bug.CreatedAt = DateTime.UtcNow;
             await _db.Bugs.AddAsync(bug);
             await _db.SaveChangesAsync();
+
         }
 
         public async Task UpdateBugAsync(Bug bug)
@@ -52,6 +55,8 @@ namespace Bug_Tracking_Sys.Services.Implementations
 
             if (existingBug == null) throw new KeyNotFoundException($"Bug with ID {bug.BugId} not found");
 
+            // record history before update if status changed will be here
+
             existingBug.UpdatedAt = DateTime.UtcNow;
             _db.Entry(existingBug).CurrentValues.SetValues(bug);
             await _db.SaveChangesAsync();
@@ -62,6 +67,10 @@ namespace Bug_Tracking_Sys.Services.Implementations
             var bug = await _db.Bugs
                 .FirstOrDefaultAsync(b => b.BugId == id);
             if (bug == null) throw new KeyNotFoundException($"Bug with ID {id} not found");
+
+
+            // record bug resolution date and status logic wii be here
+
 
             bug.Status = BugStatus.Resolved;
             bug.ResolvedAt = DateTime.UtcNow;
